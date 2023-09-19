@@ -39,8 +39,8 @@ public:
   float get_setup_priority() const override { return esphome::setup_priority::LATE; }
 
   EnergyMonitor emon1; // Phase 1
-  EnergyMonitor emon2; // Phase 2
-  EnergyMonitor emon3; //Phase 3
+//  EnergyMonitor emon2; // Phase 2
+//  EnergyMonitor emon3; //Phase 3
 
   // Phase 1 sensors
   Sensor *realpower_sensor1 = new Sensor();
@@ -50,18 +50,18 @@ public:
   Sensor *current_sensor1 = new Sensor();
 
   // Phase 2 sensors
-  Sensor *realpower_sensor2 = new Sensor();
-  Sensor *apparentpower_sensor2 = new Sensor();
-  Sensor *powerfactor_sensor2 = new Sensor();
-  Sensor *supplyvoltage_sensor2 = new Sensor();
-  Sensor *current_sensor2 = new Sensor();
+//  Sensor *realpower_sensor2 = new Sensor();
+//  Sensor *apparentpower_sensor2 = new Sensor();
+//  Sensor *powerfactor_sensor2 = new Sensor();
+//  Sensor *supplyvoltage_sensor2 = new Sensor();
+//  Sensor *current_sensor2 = new Sensor();
 
   // Phase 3 sensors
-  Sensor *realpower_sensor3 = new Sensor();
-  Sensor *apparentpower_sensor3 = new Sensor();
-  Sensor *powerfactor_sensor3 = new Sensor();
-  Sensor *supplyvoltage_sensor3 = new Sensor();
-  Sensor *current_sensor3 = new Sensor();
+//  Sensor *realpower_sensor3 = new Sensor();
+//  Sensor *apparentpower_sensor3 = new Sensor();
+//  Sensor *powerfactor_sensor3 = new Sensor();
+//  Sensor *supplyvoltage_sensor3 = new Sensor();
+//  Sensor *current_sensor3 = new Sensor();
 
 
   // Total sensors
@@ -97,13 +97,13 @@ public:
     emon1.current(I1, CI1);        // Current: input pin, calibration.
 
     // Phase 2 sensors
-    emon2.voltage(V2, CV2, 1.732); // Voltage: input pin, calibration, phase_shift
-    emon2.current(I2, CI2);        // Current: input pin, calibration.
+//    emon2.voltage(V2, CV2, 1.732); // Voltage: input pin, calibration, phase_shift
+//    emon2.current(I2, CI2);        // Current: input pin, calibration.
 
 
     //Phase 3 sensors
-    emon3.voltage(V3, CV3, 1.732);  // Voltage: input pin, calibration, phase_shift
-    emon3.current(I3, CI3);       // Current: input pin, calibration.
+//    emon3.voltage(V3, CV3, 1.732);  // Voltage: input pin, calibration, phase_shift
+//    emon3.current(I3, CI3);       // Current: input pin, calibration.
   }
 
   void update() override
@@ -126,45 +126,45 @@ public:
 
     // Phase 2
 
-    emon2.calcVI(CROSSINGS, 2000);
-    float realPower2 = emon2.realPower;
-    realpower_sensor2->publish_state(realPower2);
-    float apparentPower2 = emon2.apparentPower;
-    apparentpower_sensor2->publish_state(apparentPower2);
-    float powerFactor2 = emon2.powerFactor;
-    powerfactor_sensor2->publish_state(powerFactor2);
-    float supplyVoltage2 = emon2.Vrms;
-    supplyvoltage_sensor2->publish_state(supplyVoltage2);
-    float current2 = emon2.Irms;
-    current_sensor2->publish_state(current2);
+//    emon2.calcVI(CROSSINGS, 2000);
+//    float realPower2 = emon2.realPower;
+//    realpower_sensor2->publish_state(realPower2);
+//    float apparentPower2 = emon2.apparentPower;
+//    apparentpower_sensor2->publish_state(apparentPower2);
+//    float powerFactor2 = emon2.powerFactor;
+//    powerfactor_sensor2->publish_state(powerFactor2);
+//    float supplyVoltage2 = emon2.Vrms;
+//    supplyvoltage_sensor2->publish_state(supplyVoltage2);
+//    float current2 = emon2.Irms;
+//    current_sensor2->publish_state(current2);
 
 
-    esp_task_wdt_reset(); // Things can take some time... this ensures the watchdog is aware
+//    esp_task_wdt_reset(); // Things can take some time... this ensures the watchdog is aware
 
 
      // Phase 3
 
-    emon3.calcVI(CROSSINGS,2000);
-    float realPower3 = emon3.realPower;
-    realpower_sensor3->publish_state(realPower3);
-    float apparentPower3 = emon3.apparentPower;
-    apparentpower_sensor3->publish_state(apparentPower3);
-    float powerFactor3 = emon3.powerFactor;
-    powerfactor_sensor3->publish_state(powerFactor3);
-    float supplyVoltage3 = emon3.Vrms;
-    supplyvoltage_sensor3->publish_state(supplyVoltage3);
-    float current3 = emon3.Irms;
-    current_sensor3->publish_state(current3);
+//    emon3.calcVI(CROSSINGS,2000);
+//    float realPower3 = emon3.realPower;
+//    realpower_sensor3->publish_state(realPower3);
+//    float apparentPower3 = emon3.apparentPower;
+//    apparentpower_sensor3->publish_state(apparentPower3);
+//    float powerFactor3 = emon3.powerFactor;
+//    powerfactor_sensor3->publish_state(powerFactor3);
+//    float supplyVoltage3 = emon3.Vrms;
+//    supplyvoltage_sensor3->publish_state(supplyVoltage3);
+//    float current3 = emon3.Irms;
+//    current_sensor3->publish_state(current3);
 
 
 
     // Totals 1 phase - uncomment only this block if you are reading one phase
-//    float realPower_total = emon1.realPower;
-//    realpower_sensor_total->publish_state(realPower_total);
-//    float apparentPower_total = emon1.apparentPower;
-//    apparentpower_sensor_total->publish_state(apparentPower_total);
-//    float current_total = emon1.Irms;
-//    current_sensor_total->publish_state(current_total);
+    float realPower_total = emon1.realPower;
+    realpower_sensor_total->publish_state(realPower_total);
+    float apparentPower_total = emon1.apparentPower;
+    apparentpower_sensor_total->publish_state(apparentPower_total);
+    float current_total = emon1.Irms;
+    current_sensor_total->publish_state(current_total);
 
 
     // Totals 2 phases - uncomment only this block if you are reading two phases
@@ -178,12 +178,12 @@ public:
 
 
     // Totals 3 phases - uncomment only this block if you are reading three phases
-    float realPower_total = emon1.realPower + emon2.realPower + emon3.realPower;
-    realpower_sensor_total->publish_state(realPower_total);
-    float apparentPower_total = emon1.apparentPower + emon2.apparentPower + emon3.apparentPower;
-    apparentpower_sensor_total->publish_state(apparentPower_total);
-    float current_total = emon1.Irms + emon2.Irms + emon3.Irms;
-    current_sensor_total->publish_state(current_total);
+//    float realPower_total = emon1.realPower + emon2.realPower + emon3.realPower;
+//    realpower_sensor_total->publish_state(realPower_total);
+//    float apparentPower_total = emon1.apparentPower + emon2.apparentPower + emon3.apparentPower;
+//    apparentpower_sensor_total->publish_state(apparentPower_total);
+//    float current_total = emon1.Irms + emon2.Irms + emon3.Irms;
+//    current_sensor_total->publish_state(current_total);
 
 
   }
