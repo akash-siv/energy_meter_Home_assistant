@@ -18,16 +18,16 @@
 #define V2 34 //Set to V1 if using only one voltage meter
 #define V3 34 //Set to V1 if using only one voltage meter
 
-#define I1 35
-#define I2 32
+#define I1 32
+#define I2 35
 #define I3 33
 
 // Calibration for voltage sensors CV and current sensors CI
-#define CV1 510
+#define CV1 505
 #define CV2 510 //Set to CV1 if using only one voltage meter
 #define CV3 510 //Set to CV1 if using only one voltage meter
 
-#define CI1 96.72
+#define CI1 27.4
 #define CI2 94.93
 #define CI3 1
 
